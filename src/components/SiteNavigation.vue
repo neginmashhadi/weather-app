@@ -9,16 +9,17 @@
           <p class="text-2xl">Your Local Weather</p>
         </div>
       </RouterLink>
-
+      <!-- Information icon -->
       <div class="flex gap-3 flex-1 justify-end">
         <i
           class="fa-solid fa-info text-xl hover:text-weather-secondary duration-150 cursor-pointer"
+          @click="toggleModal"
         ></i>
         <i
           class="fa-solid fa-list text-xl hover:text-weather-secondary duration-150 cursor-pointer"
         ></i>
       </div>
-      <BaseModal>
+      <BaseModal :activeModal="activeModal" @close-modal="toggleModal">
         <div class="text-black">
           <h1 class="text-2xl mb-1">About:</h1>
           <p class="mb-4">
@@ -54,7 +55,13 @@
 
 
 <script setup>
+import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import BaseModal from "./BaseModal.vue";
+
+const activeModal = ref(null); //to make the value reactive
+const toggleModal = () => {
+  activeModal.value = !activeModal.value;
+};
 </script>
 
